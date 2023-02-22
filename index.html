@@ -1,0 +1,166 @@
+<body>
+<script type="text/javascript">
+var oneu = 0;
+var twou = 0;
+var threeu = 0;
+var fouru = 0;
+var fiveu = 0;
+var sixu = 0;
+var onep = 0;
+var twop = 0;
+var threep = 0;
+var fourp = 0;
+var fivep = 0;
+var sixp = 0;
+var totalu = 0;
+var dec = 0;
+var limit = 1;
+</script>
+<h3>繰り返し回数</h3>
+<a id="counter">1</a>回繰り返す<p>※100000回 (10万回)以上にすることは推奨していません。また、その事によって何かしらの損害を受けた場合でも、製作者は一切の責任を持ちません。</p>
+<p>
+   <input type="button" id="limitdownM" onclick="limit -= 1000" disabled value="-1000">
+   <input type="button" id="limitdownD" onclick="limit -= 500" disabled value="-500">
+   <input type="button" id="limitdownC" onclick="limit -= 100" disabled value="-100">
+   <input type="button" id="limitdownL" onclick="limit -= 50" disabled value="-50">
+   <input type="button" id="limitdownX" onclick="limit -= 10" disabled value="-10">
+   <input type="button" id="limitdownI" onclick="limit -= 1" disabled value="-1">
+   <input type="button" id="resetlimit" onclick="limit = 1" disabled value="reset">
+   <input type="button" id="limitupI" onclick="limit += 1" value="+1">
+   <input type="button" id="limitupX" onclick="limit += 10" value="+10">
+   <input type="button" id="limitupL" onclick="limit += 50" value="+50">
+   <input type="button" id="limitupC" onclick="limit += 100" value="+100">
+   <input type="button" id="limitupD" onclick="limit += 500" value="+500">
+   <input type="button" id="limitupM" onclick="limit += 1000" value="+1000">
+</p>
+<h3>サイコロ(統計データ付き)</h3>
+<p><img id="sainome" src="1.jpg" width="50" height="50"></p>
+<button onclick="Saikoro()"><strong>　サイコロを振る　</strong></button>
+<p id="kekka"></p>
+統計データ
+<table>
+    <tr>
+    <td> 目 </td>
+    <td> 出現回数 </td>
+    <td> 確率 </td>
+    </tr>
+    <tr>
+    <td> 1 </td>
+    <td id="oneu">0</td>
+    <td id="onep">0</td>
+    </tr>
+    <tr>
+    <td> 2 </td>
+    <td id="twou">0</td>
+    <td id="twop">0</td>
+    </tr>
+    <tr>
+    <td> 3 </td>
+    <td id="threeu">0</td>
+    <td id="threep">0</td>
+    </tr>
+    <tr>
+    <td> 4 </td>
+    <td id="fouru">0</td>
+    <td id="fourp">0</td>
+    </tr>
+    <tr>
+    <td> 5 </td>
+    <td id="fiveu">0</td>
+    <td id="fivep">0</td>
+    </tr>
+    <tr>
+    <td> 6 </td>
+    <td id="sixu">0</td>
+    <td id="sixp">0</td>
+    </tr>
+    <tr>
+    <td> 合計 </td>
+    <td id="totalu">0</td>
+    </tr>
+</table>
+</body>
+<script type="text/javascript">
+function Saikoro() {
+    for (var step = 0; step < limit; step++) {
+        var saikoro = Math.floor( Math.random() * 6) +1;
+        document.getElementById("kekka").innerHTML = saikoro;
+        document.getElementById("sainome").src= saikoro + ".jpg";
+        totalu++;
+        document.getElementById("totalu").innerHTML = totalu;
+        if (saikoro == 1) {
+            oneu++;
+            document.getElementById("oneu").innerHTML = oneu;
+        } else if (saikoro == 2) {
+            twou++;
+            document.getElementById("twou").innerHTML = twou;
+        } else if (saikoro == 3) {
+            threeu++;
+            document.getElementById("threeu").innerHTML = threeu;
+        } else if (saikoro == 4) {
+            fouru++;
+            document.getElementById("fouru").innerHTML = fouru;
+        } else if (saikoro == 5) {
+            fiveu++;
+            document.getElementById("fiveu").innerHTML = fiveu;
+        } else if (saikoro == 6) {
+            sixu++;
+            document.getElementById("sixu").innerHTML = sixu;
+        }
+        onep = (oneu / totalu) * 100 ;
+        document.getElementById("onep").innerHTML = onep;
+        twop = (twou / totalu) * 100 ;
+        document.getElementById("twop").innerHTML = twop;
+        threep = (threeu / totalu) * 100 ;
+        document.getElementById("threep").innerHTML = threep;
+        fourp = (fouru / totalu) * 100 ;
+        document.getElementById("fourp").innerHTML = fourp;
+        fivep = (fiveu / totalu) * 100 ;
+        document.getElementById("fivep").innerHTML = fivep;
+        sixp = (sixu / totalu) * 100 ;
+        document.getElementById("sixp").innerHTML = sixp;
+    }
+}
+function loop () {
+    document.getElementById('counter').innerHTML = limit;
+    if (limit <= 0) {
+        limit = 1
+    }
+    if (limit <= 1) {
+        document.getElementById("resetlimit").setAttribute("disabled","true");
+    } else {
+        resetlimit.removeAttribute("disabled");
+    }
+    if (limit <= 1) {
+        document.getElementById("limitdownI").setAttribute("disabled","true");
+    } else {
+        limitdownI.removeAttribute("disabled");
+    }
+    if (limit <= 10) {
+        document.getElementById("limitdownX").setAttribute("disabled","true");
+    } else {
+        limitdownX.removeAttribute("disabled");
+    }
+    if (limit <= 50) {
+        document.getElementById("limitdownL").setAttribute("disabled","true");
+    } else {
+        limitdownL.removeAttribute("disabled");
+    }
+    if (limit <= 100) {
+        document.getElementById("limitdownC").setAttribute("disabled","true");
+    } else {
+        limitdownC.removeAttribute("disabled");
+    }
+    if (limit <= 500) {
+        document.getElementById("limitdownD").setAttribute("disabled","true");
+    } else {
+        limitdownD.removeAttribute("disabled");
+    }
+    if (limit <= 1000) {
+        document.getElementById("limitdownM").setAttribute("disabled","true");
+    } else {
+        limitdownM.removeAttribute("disabled");
+    }
+}
+setInterval(loop, 500);
+</script>
